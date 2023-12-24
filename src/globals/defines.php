@@ -28,6 +28,11 @@ const DANGER_CMD = [
     'rmdir',
 ];
 
+// load mode
+const SPC_LOAD_MODE_SRC = 1;
+const SPC_LOAD_MODE_VENDOR = 2;
+define('LOAD_MODE', is_dir(WORKING_DIR . '/src/SPC') ? SPC_LOAD_MODE_SRC : SPC_LOAD_MODE_VENDOR);
+
 // file replace strategy
 const REPLACE_FILE_STR = 1;
 const REPLACE_FILE_PREG = 2;

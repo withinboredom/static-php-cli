@@ -6,6 +6,7 @@ namespace SPC;
 
 use SPC\command\BuildCliCommand;
 use SPC\command\BuildLibsCommand;
+use SPC\command\deps\CalculateExtCommand;
 use SPC\command\dev\AllExtCommand;
 use SPC\command\dev\PhpVerCommand;
 use SPC\command\dev\SortConfigCommand;
@@ -29,22 +30,27 @@ final class ConsoleApplication extends Application
     {
         parent::__construct('static-php-cli', self::VERSION);
 
-        $this->addCommands(
-            [
-                new BuildCliCommand(),
-                new BuildLibsCommand(),
-                new DoctorCommand(),
-                new DownloadCommand(),
-                new DumpLicenseCommand(),
-                new ExtractCommand(),
-                new MicroCombineCommand(),
+        $this->addCommands([
+            new BuildCliCommand(),
+            new BuildLibsCommand(),
+            new DoctorCommand(),
+            new DownloadCommand(),
+            new DumpLicenseCommand(),
+            new ExtractCommand(),
+            new MicroCombineCommand(),
 
-                // Dev commands
-                new AllExtCommand(),
-                new PhpVerCommand(),
-                new SortConfigCommand(),
-            ]
-        );
+            // Dev commands
+            new AllExtCommand(),
+            new PhpVerCommand(),
+            new SortConfigCommand(),
+        ]);
+
+        // vendor command in vendor mode
+        if (LOAD_MODE === SPC_LOAD_MODE_VENDOR) {
+            $this->addCommands([
+                new CalculateExtCommand(),
+            ]);
+        }
     }
 
     protected function getDefaultCommands(): array
