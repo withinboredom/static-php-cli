@@ -343,7 +343,7 @@ class LinuxBuilder extends UnixBuilderBase
         if (str_ends_with(getenv('CC'), 'clang') && SystemUtil::findCommand('lld')) {
             $use_lld = '-Xcompiler -fuse-ld=lld';
         }
-        $optimization = $this->getOption('no-strip', false) ? '-g -O0' : '-g0 -O3';
+        $optimization = $this->getOption('no-strip', false) ? '-g -O0' : '-g0 -O3 -march=native -pipe';
         $cflags = isset($input['EXTRA_CFLAGS']) && $input['EXTRA_CFLAGS'] ? " {$input['EXTRA_CFLAGS']}" : '';
         $libs = isset($input['EXTRA_LIBS']) && $input['EXTRA_LIBS'] ? " {$input['EXTRA_LIBS']}" : '';
         $ldflags = isset($input['EXTRA_LDFLAGS_PROGRAM']) && $input['EXTRA_LDFLAGS_PROGRAM'] ? " {$input['EXTRA_LDFLAGS_PROGRAM']}" : '';
