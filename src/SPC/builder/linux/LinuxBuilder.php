@@ -193,7 +193,7 @@ class LinuxBuilder extends UnixBuilderBase
         shell()->cd(SOURCE_PATH . '/php-src')
             ->exec(
                 "{$this->getOption('ld_library_path')} " .
-                './configure ' .
+                'CXXFLAGS="' . $this->arch_cxx_flags . '" CFLAGS="' . $this->arch_c_flags . '" ./configure ' .
                 '--prefix= ' .
                 '--with-valgrind=no ' .
                 '--enable-shared=no ' .
@@ -343,7 +343,7 @@ class LinuxBuilder extends UnixBuilderBase
         if (str_ends_with(getenv('CC'), 'clang') && SystemUtil::findCommand('lld')) {
             $use_lld = '-Xcompiler -fuse-ld=lld';
         }
-        $optimization = $this->getOption('no-strip', false) ? '-g -O0' : '-g0 -O3 -march=native -pipe';
+        $optimization = $this->getOption('no-strip', false) ? '-g -O0' : $this->arch_c_flags;
         $cflags = isset($input['EXTRA_CFLAGS']) && $input['EXTRA_CFLAGS'] ? " {$input['EXTRA_CFLAGS']}" : '';
         $libs = isset($input['EXTRA_LIBS']) && $input['EXTRA_LIBS'] ? " {$input['EXTRA_LIBS']}" : '';
         $ldflags = isset($input['EXTRA_LDFLAGS_PROGRAM']) && $input['EXTRA_LDFLAGS_PROGRAM'] ? " {$input['EXTRA_LDFLAGS_PROGRAM']}" : '';
