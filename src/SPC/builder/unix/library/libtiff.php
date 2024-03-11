@@ -17,7 +17,7 @@ trait libtiff
     {
         shell()->cd($this->source_dir)
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static --disable-shared ' .
                 '--disable-cxx ' .
                 '--prefix='

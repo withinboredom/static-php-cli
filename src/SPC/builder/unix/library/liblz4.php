@@ -12,7 +12,7 @@ trait liblz4
     {
         shell()->cd($this->source_dir)
             ->exec("make PREFIX='' clean")
-            ->exec("make -j{$this->builder->concurrency} PREFIX=''")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency} PREFIX=''")
             ->exec("make install PREFIX='' DESTDIR=" . BUILD_ROOT_PATH);
 
         $this->patchPkgconfPrefix(['liblz4.pc']);

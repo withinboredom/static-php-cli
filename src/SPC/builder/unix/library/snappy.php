@@ -20,7 +20,7 @@ trait snappy
 
         shell()->cd($this->source_dir . '/cmake/build')
             ->exec(
-                'cmake ' .
+                $this->getDefaultFlags() . ' cmake ' .
                 "-DCMAKE_TOOLCHAIN_FILE={$this->builder->cmake_toolchain_file} " .
                 "{$this->builder->makeCmakeArgs()} " .
                 '-DSNAPPY_BUILD_TESTS=OFF ' .

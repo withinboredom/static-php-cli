@@ -44,7 +44,7 @@ class libpng extends LinuxLibraryBase
             ->exec('chmod +x ./configure')
             ->exec('chmod +x ./install-sh')
             ->exec(
-                'LDFLAGS="-L' . BUILD_LIB_PATH . '" ' .
+                $this->getDefaultFlags() . ' LDFLAGS="-L' . BUILD_LIB_PATH . '" ' .
                 './configure ' .
                 '--disable-shared ' .
                 '--enable-static ' .

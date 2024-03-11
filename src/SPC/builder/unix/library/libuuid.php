@@ -26,7 +26,7 @@ trait libuuid
             ->exec('chmod +x configure')
             ->exec('chmod +x install-sh')
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static --disable-shared ' .
                 '--prefix='
             )

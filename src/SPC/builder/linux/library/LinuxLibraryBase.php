@@ -33,4 +33,11 @@ abstract class LinuxLibraryBase extends LibraryBase
     {
         return $this->builder;
     }
+
+    protected function getFlags(string $name, string $prefix, string $suffix = ''): string {
+        $specificEnv = getenv(self::NAME . "_" . $name) ?: '';
+        $env = getenv($name) ?: '';
+
+        return "$name=\"$prefix $env $specificEnv $suffix\"";
+    }
 }

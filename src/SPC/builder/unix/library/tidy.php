@@ -19,7 +19,7 @@ trait tidy
         FileSystem::resetDir($this->source_dir . '/build-dir');
         shell()->cd($this->source_dir . '/build-dir')
             ->exec(
-                'cmake ' .
+                $this->getDefaultFlags() . ' cmake ' .
                 "{$this->builder->makeCmakeArgs()} " .
                 '-DBUILD_SHARED_LIB=OFF ' .
                 '-DSUPPORT_CONSOLE_APP=OFF ' .

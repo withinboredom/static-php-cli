@@ -23,7 +23,7 @@ trait libjpeg
         // Start build
         shell()->cd($this->source_dir . '/build')
             ->exec(
-                "cmake {$this->builder->makeCmakeArgs()} " .
+                $this->getDefaultFlags() . " cmake {$this->builder->makeCmakeArgs()} " .
                 '-DENABLE_STATIC=ON ' .
                 '-DENABLE_SHARED=OFF ' .
                 '..'

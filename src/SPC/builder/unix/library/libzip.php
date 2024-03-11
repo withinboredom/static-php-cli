@@ -29,7 +29,7 @@ trait libzip
         FileSystem::resetDir($this->source_dir . '/build');
         shell()->cd($this->source_dir . '/build')
             ->exec(
-                'cmake ' .
+                $this->getDefaultFlags() . ' cmake ' .
                 "{$this->builder->makeCmakeArgs()} " .
                 '-DENABLE_GNUTLS=OFF ' .
                 '-DENABLE_MBEDTLS=OFF ' .

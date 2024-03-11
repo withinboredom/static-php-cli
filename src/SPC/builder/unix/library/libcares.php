@@ -14,7 +14,7 @@ trait libcares
     protected function build(): void
     {
         shell()->cd($this->source_dir)
-            ->exec('./configure --prefix=' . BUILD_ROOT_PATH . ' --enable-static --disable-shared --disable-tests')
+            ->exec($this->getDefaultFlags() . ' ./configure --prefix=' . BUILD_ROOT_PATH . ' --enable-static --disable-shared --disable-tests')
             ->exec("make -j {$this->builder->concurrency}")
             ->exec('make install');
     }

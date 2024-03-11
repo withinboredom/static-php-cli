@@ -28,7 +28,7 @@ trait freetype
         shell()->cd($this->source_dir)
             ->exec('sh autogen.sh')
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static --disable-shared --without-harfbuzz --prefix= ' .
                 $suggested
             )

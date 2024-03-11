@@ -17,7 +17,7 @@ trait pkgconfig
                     'Darwin' => $macos_env,
                     default => $linux_env,
                 } .
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--disable-shared ' .
                 '--enable-static ' .
                 '--with-internal-glib ' .

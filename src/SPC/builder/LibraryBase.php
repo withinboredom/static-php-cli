@@ -206,4 +206,10 @@ abstract class LibraryBase
         }
         logger()->debug('enabling ' . static::NAME . " without {$name}");
     }
+
+    abstract protected function getFlags(string $name, string $prefix, string $suffix = ''): string;
+
+    protected function getDefaultFlags(): string {
+        return $this->getFlags('CFLAGS', '') . " " . $this->getFlags('CXXFLAGS', '');
+    }
 }

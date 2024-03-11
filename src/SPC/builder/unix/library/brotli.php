@@ -18,13 +18,13 @@ trait brotli
     {
         FileSystem::resetDir($this->source_dir . '/build-dir');
         shell()->cd($this->source_dir . '/build-dir')
-            ->exec(
-                'cmake ' .
+            ->exec( $this->getDefaultFlags() .
+                ' cmake ' .
                 "{$this->builder->makeCmakeArgs()} " .
                 '-DBUILD_SHARED_LIBS=OFF ' .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         $this->patchPkgconfPrefix(['libbrotlicommon.pc', 'libbrotlidec.pc', 'libbrotlienc.pc']);
         shell()->cd(BUILD_ROOT_PATH . '/lib')->exec('ln -sf libbrotlicommon.a libbrotli.a');

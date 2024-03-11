@@ -10,7 +10,7 @@ trait ncurses
     {
         shell()->cd($this->source_dir)
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static ' .
                 '--disable-shared ' .
                 '--enable-overwrite ' .

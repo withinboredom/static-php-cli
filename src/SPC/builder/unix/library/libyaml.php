@@ -60,7 +60,7 @@ EOF
         FileSystem::resetDir($this->source_dir . '/build');
         shell()->cd($this->source_dir . '/build')
             ->exec(
-                'cmake ' .
+                $this->getDefaultFlags() . ' cmake ' .
                 // '--debug-find ' .
                 '-DCMAKE_BUILD_TYPE=Release ' .
                 '-DBUILD_TESTING=OFF ' .

@@ -12,7 +12,7 @@ trait gettext
         $extra .= $this->builder->getLib('libxml2') ? ('--with-libxml2-prefix=' . BUILD_ROOT_PATH . ' ') : '';
         shell()->cd($this->source_dir)
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static ' .
                 '--disable-shared ' .
                 '--disable-java ' .

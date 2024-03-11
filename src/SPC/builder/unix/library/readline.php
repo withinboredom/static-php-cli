@@ -17,7 +17,7 @@ trait readline
     {
         shell()->cd($this->source_dir)
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static=yes ' .
                 '--enable-shared=no ' .
                 '--prefix= ' .

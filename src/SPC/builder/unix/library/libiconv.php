@@ -12,7 +12,7 @@ trait libiconv
 
         shell()->cd($this->source_dir)
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static ' .
                 '--disable-shared ' .
                 '--prefix='

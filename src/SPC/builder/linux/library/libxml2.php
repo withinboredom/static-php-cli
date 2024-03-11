@@ -25,7 +25,7 @@ class libxml2 extends LinuxLibraryBase
         FileSystem::resetDir($this->source_dir . '/build');
         shell()->cd($this->source_dir . '/build')
             ->exec(
-                'cmake ' .
+                $this->getDefaultFlags() . ' cmake ' .
                 '-DCMAKE_BUILD_TYPE=Release ' .
                 '-DCMAKE_INSTALL_PREFIX=' . BUILD_ROOT_PATH . ' ' .
                 '-DCMAKE_INSTALL_LIBDIR=' . BUILD_LIB_PATH . ' ' .
