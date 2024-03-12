@@ -19,7 +19,7 @@ trait postgresql
     protected function build(): void
     {
         $builddir = BUILD_ROOT_PATH;
-        $envs = '';
+        $envs = $this->getDefaultFlags();
         $packages = 'zlib openssl readline libxml-2.0';
         $optional_packages = [
             'zstd' => 'libzstd',

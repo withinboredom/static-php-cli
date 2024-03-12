@@ -33,7 +33,7 @@ trait freetype
                 $suggested
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         $this->patchPkgconfPrefix(['freetype2.pc']);
         FileSystem::replaceFileStr(

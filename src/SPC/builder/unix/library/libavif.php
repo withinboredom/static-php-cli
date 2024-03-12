@@ -23,7 +23,7 @@ trait libavif
         // Start build
         shell()->cd($this->source_dir . '/build')
             ->exec($this->getDefaultFlags() . " cmake {$this->builder->makeCmakeArgs()} -DBUILD_SHARED_LIBS=OFF ..")
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         // patch pkgconfig
         $this->patchPkgconfPrefix(['libavif.pc']);

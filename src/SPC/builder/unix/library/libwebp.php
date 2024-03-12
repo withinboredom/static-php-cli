@@ -29,7 +29,7 @@ trait libwebp
                 '-DWEBP_BUILD_EXTRAS=ON ' .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         // patch pkgconfig
         $this->patchPkgconfPrefix(['libsharpyuv.pc', 'libwebp.pc', 'libwebpdecoder.pc', 'libwebpdemux.pc', 'libwebpmux.pc'], PKGCONF_PATCH_PREFIX | PKGCONF_PATCH_LIBDIR);

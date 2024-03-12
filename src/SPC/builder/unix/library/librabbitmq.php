@@ -21,7 +21,7 @@ trait librabbitmq
         // Start build
         shell()->cd($this->source_dir . '/build')
             ->exec(
-                'cmake ' .
+                $this->getDefaultFlags() . ' cmake ' .
                 '-DCMAKE_INSTALL_PREFIX=' . BUILD_ROOT_PATH . ' ' .
                 "-DCMAKE_TOOLCHAIN_FILE={$this->builder->cmake_toolchain_file} " .
                 '-DCMAKE_BUILD_TYPE=Release ' .
@@ -29,7 +29,7 @@ trait librabbitmq
                 '-DBUILD_STATIC_LIBS=ON ' .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install');
     }
 }

@@ -30,7 +30,7 @@ class icu extends LinuxLibraryBase
                 '--prefix=' . BUILD_ROOT_PATH
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec("{$cppflags} {$cxxflags} {$ldflags} " . "make -j{$this->builder->concurrency}")
             ->exec('make install');
     }
 }

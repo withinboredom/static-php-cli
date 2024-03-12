@@ -25,7 +25,7 @@ trait tidy
                 '-DSUPPORT_CONSOLE_APP=OFF ' .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         $this->patchPkgconfPrefix(['tidy.pc']);
     }

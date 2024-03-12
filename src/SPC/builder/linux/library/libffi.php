@@ -29,7 +29,7 @@ class libffi extends LinuxLibraryBase
 
         shell()->cd($this->source_dir)
             ->exec(
-                './configure ' .
+                $this->getDefaultFlags() . ' ./configure ' .
                 '--enable-static ' .
                 '--disable-shared ' .
                 "--host={$this->builder->getOption('arch')}-unknown-linux " .
@@ -38,7 +38,7 @@ class libffi extends LinuxLibraryBase
                 "--libdir={$lib}"
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec("make install DESTDIR={$destdir}");
 
         if (is_file(BUILD_ROOT_PATH . '/lib64/libffi.a')) {

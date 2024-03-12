@@ -30,7 +30,7 @@ trait ncurses
                 '--prefix=' . BUILD_ROOT_PATH
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec('make install');
     }
 }

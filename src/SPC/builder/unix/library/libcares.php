@@ -15,7 +15,7 @@ trait libcares
     {
         shell()->cd($this->source_dir)
             ->exec($this->getDefaultFlags() . ' ./configure --prefix=' . BUILD_ROOT_PATH . ' --enable-static --disable-shared --disable-tests')
-            ->exec("make -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j {$this->builder->concurrency}")
             ->exec('make install');
     }
 }

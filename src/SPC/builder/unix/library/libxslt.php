@@ -42,7 +42,7 @@ trait libxslt
                 '--prefix='
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getFlags('CFLAGS', '-I' . BUILD_INCLUDE_PATH) . "make -j{$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . escapeshellarg(BUILD_ROOT_PATH));
         $this->patchPkgconfPrefix(['libexslt.pc']);
     }

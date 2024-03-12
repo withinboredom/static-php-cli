@@ -41,7 +41,7 @@ class libxml2 extends LinuxLibraryBase
                 '-DLIBXML2_WITH_TESTS=OFF ' .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install');
 
         FileSystem::replaceFileStr(

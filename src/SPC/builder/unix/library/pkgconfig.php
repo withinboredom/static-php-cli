@@ -30,7 +30,7 @@ trait pkgconfig
                 '--without-pc-path'
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec('make install-exec');
         shell()->exec('strip ' . BUILD_ROOT_PATH . '/bin/pkg-config');
     }

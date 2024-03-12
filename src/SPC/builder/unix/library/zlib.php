@@ -20,7 +20,7 @@ trait zlib
         shell()->cd($this->source_dir)
             ->exec($this->getDefaultFlags() . ' ./configure --static --prefix=')
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec("make install DESTDIR={$destdir}");
         $this->patchPkgconfPrefix(['zlib.pc']);
     }

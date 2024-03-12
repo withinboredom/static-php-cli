@@ -46,7 +46,7 @@ trait nghttp2
                 '--prefix='
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec("make install DESTDIR={$destdir}");
         $this->patchPkgconfPrefix(['libnghttp2.pc']);
     }

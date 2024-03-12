@@ -25,7 +25,7 @@ trait zstd
                 '-DZSTD_BUILD_SHARED=OFF ' .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         $this->patchPkgconfPrefix(['libzstd.pc']);
     }

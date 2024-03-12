@@ -41,7 +41,7 @@ trait libzip
                 $extra .
                 '..'
             )
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         $this->patchPkgconfPrefix(['libzip.pc'], PKGCONF_PATCH_PREFIX);
     }

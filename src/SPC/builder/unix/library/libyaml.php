@@ -71,7 +71,7 @@ EOF
                 "-DCMAKE_TOOLCHAIN_FILE={$this->builder->cmake_toolchain_file} " .
                 '..'
             )
-            ->exec("make -j{$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " make -j{$this->builder->concurrency}")
             ->exec("make install DESTDIR={$destdir}");
     }
 }

@@ -73,7 +73,7 @@ class openssl extends LinuxLibraryBase
                 "linux-{$this->builder->getOption('arch')}{$clang_postfix}"
             )
             ->exec('make clean')
-            ->exec("make -j{$this->builder->concurrency} CNF_EX_LIBS=\"{$ex_lib}\"")
+            ->exec("$env make -j{$this->builder->concurrency} CNF_EX_LIBS=\"{$ex_lib}\"")
             ->exec("make install_sw DESTDIR={$destdir}");
         $this->patchPkgconfPrefix(['libssl.pc', 'openssl.pc', 'libcrypto.pc']);
     }

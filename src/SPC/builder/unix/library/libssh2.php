@@ -29,7 +29,7 @@ trait libssh2
                 "-DENABLE_ZLIB_COMPRESSION={$enable_zlib} " .
                 '..'
             )
-            ->exec("cmake --build . -j {$this->builder->concurrency}")
+            ->exec($this->getDefaultFlags() . " cmake --build . -j {$this->builder->concurrency}")
             ->exec('make install DESTDIR=' . BUILD_ROOT_PATH);
         $this->patchPkgconfPrefix(['libssh2.pc']);
     }
